@@ -1,24 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // ----------------------------------------------------
-    // 1. Image Click Toggle Logic (Click-on/Click-away)
-    // ----------------------------------------------------
-    const heroImage = document.getElementById('heroImage');
-
-    if (heroImage) {
-        // Toggle the glow ON/OFF on the image itself
-        heroImage.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevents document click handler from running immediately
-            heroImage.classList.toggle('active');
-        });
-
-        // Turn the glow OFF when clicking anywhere else
-        document.addEventListener('click', function(e) {
-            if (heroImage.classList.contains('active')) {
-                heroImage.classList.remove('active');
-            }
-        });
-    }
-
     // ----------------------------------------------------
     // 2. Animated Snowflakes Generation Logic
     // ----------------------------------------------------
@@ -33,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const startX = Math.random() * 100; 
         snowflake.style.left = `${startX}vw`;
 
-        // Random size (5px to 10px)
-        const size = Math.random() * 5 + 5; 
-        snowflake.style.width = `${size}px`;
-        snowflake.style.height = `${size}px`;
+        // Random scale (1.0 to 2.0 times the base CSS font-size)
+        const scale = Math.random() * 1.0 + 1.0; 
+        // Apply scale transform to the whole snowflake element
+        snowflake.style.transform = `scale(${scale})`;
 
         // Random animation duration (to vary falling speed: 10s to 25s)
         const duration = Math.random() * 15 + 10;

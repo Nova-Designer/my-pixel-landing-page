@@ -1,19 +1,3 @@
-:root {
-    --main-black: #000000;
-    --faded-blue: rgba(0, 102, 255, 0.6);
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-}
-
 /* ----------------- SNOW STYLES ----------------- */
 
 /* Container must cover the whole screen and allow elements to stack over it */
@@ -25,18 +9,27 @@ body {
     height: 100%;
     pointer-events: none; /* Allows clicks to pass through to the elements below */
     z-index: 100; 
+    overflow: hidden; /* Prevents scrollbars if snow starts outside view */
 }
 
 /* Base style for individual snowflakes */
 .snowflake {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background: #fff; /* White color */
-    border-radius: 50%; /* Perfect circle */
+    /* We don't need width/height here anymore, the content size controls it */
     opacity: 0.8;
+    
     /* Attach the fall animation - duration will be set by JS */
     animation: fall linear infinite;
+}
+
+/* Snowflake CHARACTER styling */
+.snowflake::before {
+    content: '\2744'; /* UTF-8 Snowflake Character */
+    color: #b0e0e6; /* A very light, realistic icy blue color */
+    font-size: 10px; /* Base size, will be scaled by JS */
+    
+    /* CRITICAL: Shadow to make it visible on the white background */
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5); 
 }
 
 /* Defines the movement of the snowflake */
@@ -48,94 +41,6 @@ body {
         transform: translateY(100vh); /* Ends below the screen */
     }
 }
+/* ----------------- END SNOW STYLES ----------------- */
 
-/* ----------------- Header Curve (Dark Discord Gray) ----------------- */
-
-.header-curve {
-    width: 100%;
-    height: 150px;
-    background-color: #36393f; /* Discord Dark Gray */
-    border-bottom-left-radius: 50% 10%;
-    border-bottom-right-radius: 50% 10%;
-    position: absolute;
-    top: 0;
-    z-index: 1;
-    overflow: hidden; 
-}
-
-/* ----------------- Profile ----------------- */
-
-.profile-container {
-    margin-top: 50px; 
-    text-align: center;
-    position: relative;
-    z-index: 10; 
-}
-
-.profile-pic {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%; /* Makes it a circle */
-    border: 3px solid #ffffff; /* White border around PFP */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    object-fit: cover;
-    margin-bottom: 10px;
-}
-
-h1 {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333333;
-    margin: 10px 0 30px 0;
-}
-
-/* ----------------- Main Image with Animation Styles ----------------- */
-
-.image-wrapper {
-    width: 90%;
-    max-width: 450px;
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 50px;
-    
-    /* Initial border and animation properties */
-    border: 1px solid var(--main-black);
-    transition: transform 0.2s ease-out, border-color 0.2s ease-out, box-shadow 0.2s ease-out; 
-}
-
-.hero-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Active (Clicked/Tapped) State for Animation */
-.image-wrapper.active {
-    transform: scale(1.02); /* Grows 2% outwards */
-    border-color: var(--faded-blue); /* Faded blue outline */
-    box-shadow: 0 4px 20px var(--faded-blue); /* Subtle blue glow */
-}
-
-/* ----------------- Social Links ----------------- */
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding-bottom: 30px;
-    margin-top: auto; /* Pushes links to the bottom */
-}
-
-.social-link {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #333333;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.social-link:hover {
-    color: #007bff; 
-}
+/* ... rest of your existing CSS ... */
