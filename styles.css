@@ -14,17 +14,53 @@ body {
     min-height: 100vh;
 }
 
-/* ----------------- Header Curve FIX ----------------- */
+/* ----------------- SNOW STYLES ----------------- */
+
+/* Container must cover the whole screen and allow elements to stack over it */
+#snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicks to pass through to the elements below */
+    z-index: 100; 
+}
+
+/* Base style for individual snowflakes */
+.snowflake {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff; /* White color */
+    border-radius: 50%; /* Perfect circle */
+    opacity: 0.8;
+    /* Attach the fall animation - duration will be set by JS */
+    animation: fall linear infinite;
+}
+
+/* Defines the movement of the snowflake */
+@keyframes fall {
+    0% {
+        transform: translateY(-10vh); /* Starts above the screen */
+    }
+    100% {
+        transform: translateY(100vh); /* Ends below the screen */
+    }
+}
+
+/* ----------------- Header Curve (Dark Discord Gray) ----------------- */
 
 .header-curve {
     width: 100%;
     height: 150px;
-    background-color: #F8F8F8; /* Light Gray/White to prevent color distortion */
+    background-color: #36393f; /* Discord Dark Gray */
     border-bottom-left-radius: 50% 10%;
     border-bottom-right-radius: 50% 10%;
     position: absolute;
     top: 0;
     z-index: 1;
+    overflow: hidden; 
 }
 
 /* ----------------- Profile ----------------- */
@@ -39,8 +75,8 @@ body {
 .profile-pic {
     width: 120px;
     height: 120px;
-    border-radius: 50%; 
-    border: 3px solid #ffffff; 
+    border-radius: 50%; /* Makes it a circle */
+    border: 3px solid #ffffff; /* White border around PFP */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     object-fit: cover;
     margin-bottom: 10px;
@@ -53,7 +89,7 @@ h1 {
     margin: 10px 0 30px 0;
 }
 
-/* ----------------- Main Image ----------------- */
+/* ----------------- Main Image with Animation Styles ----------------- */
 
 .image-wrapper {
     width: 90%;
@@ -75,26 +111,24 @@ h1 {
     display: block;
 }
 
-/* ----------------- Active (Clicked) State for Animation ----------------- */
-
+/* Active (Clicked/Tapped) State for Animation */
 .image-wrapper.active {
-    transform: scale(1.02); 
-    border-color: var(--faded-blue); 
-    box-shadow: 0 4px 20px var(--faded-blue); 
+    transform: scale(1.02); /* Grows 2% outwards */
+    border-color: var(--faded-blue); /* Faded blue outline */
+    box-shadow: 0 4px 20px var(--faded-blue); /* Subtle blue glow */
 }
 
-/* ----------------- Social Icons FIX ----------------- */
+/* ----------------- Social Links ----------------- */
 
 .social-icons {
     display: flex;
     justify-content: center;
     gap: 30px;
     padding-bottom: 30px;
-    margin-top: auto; 
+    margin-top: auto; /* Pushes links to the bottom */
 }
 
-/* Styling the placeholder text for social icons */
-.social-text {
+.social-link {
     font-size: 1.2em;
     font-weight: bold;
     color: #333333;
@@ -102,6 +136,6 @@ h1 {
     transition: color 0.2s;
 }
 
-.social-text:hover {
+.social-link:hover {
     color: #007bff; 
 }
