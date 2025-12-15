@@ -1,29 +1,26 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get the element that wraps the main image
     const heroImage = document.getElementById('heroImage');
 
     if (heroImage) {
-        // Add an event listener for when the wrapper is clicked or tapped
-        heroImage.addEventListener('mousedown', function() {
-            // Add the 'active' class to trigger the CSS animation
-            heroImage.classList.add('active');
-        });
-        
-        // Add an event listener for when the click/tap is released
-        heroImage.addEventListener('mouseup', function() {
-            // Remove the 'active' class to revert the animation
-            heroImage.classList.remove('active');
+        // --- 1. Event Listener to TOGGLE the glow ON/OFF on the image itself ---
+        heroImage.addEventListener('click', function(e) {
+            // Stop the click from bubbling up to the document handler below
+            e.stopPropagation(); 
+            
+            // Toggle the 'active' class (this adds the blue glow)
+            heroImage.classList.toggle('active');
         });
 
-        // Also handle touch events for mobile phones (tap and release)
-        heroImage.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Prevent default mobile behavior like scrolling
-            heroImage.classList.add('active');
-        }, false);
-        
-        heroImage.addEventListener('touchend', function(e) {
-            e.preventDefault();
-            heroImage.classList.remove('active');
-        }, false);
+        // --- 2. Event Listener to turn the glow OFF when clicking anywhere else ---
+        document.addEventListener('click', function(e) {
+            // Check if the 'active' class is currently applied
+            if (heroImage.classList.contains('active')) {
+                // If it is active, remove the 'active' class (this removes the blue glow)
+                heroImage.classList.remove('active');
+            }
+            // Note: If it's not active, do nothing.
+        });
     }
 });
