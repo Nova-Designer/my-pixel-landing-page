@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Designer</title>
+    <title>Nova Designer | Hotspot</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-box">
+            <img src="https://cdn.discordapp.com/avatars/824997760393674783/aff437b3d1e95f48c9cc0f00c1abc9a0.png?size=1024" alt="Logo" class="login-logo">
+            <h2>Guest Login</h2>
+            <p>Enter password to access hotspot</p>
+            <input type="password" id="hotspotPass" placeholder="Password">
+            <button onclick="checkLogin()">Sign In</button>
+            <p id="loginError" style="color: #ff4d4d; display: none; margin-top: 10px;">Incorrect Password</p>
+        </div>
+    </div>
+
+    <div id="timerBar" class="timer-bar" style="display: none;">
+        Connected | Session Ends In: <span id="countdown">60:00</span>
+    </div>
+
     <div class="header-curve"></div>
 
     <div class="profile-container">
-        <img 
-            src="https://cdn.discordapp.com/avatars/824997760393674783/aff437b3d1e95f48c9cc0f00c1abc9a0.png?size=1024" 
-            alt="Nova Profile" 
-            class="profile-pic"
-        >
+        <img src="https://cdn.discordapp.com/avatars/824997760393674783/aff437b3d1e95f48c9cc0f00c1abc9a0.png?size=1024" alt="Nova Profile" class="profile-pic">
         <h1>Nova's Portfolio</h1>
     </div>
 
     <div class="main-content">
         <div class="image-wrapper" id="heroImage">
-            <img 
-                src="https://images.unsplash.com/photo-1544837775-80252b827e8d?auto=format&fit=crop&q=80&w=500" 
-                alt="Main Content Image" 
-                class="hero-image"
-            >
+            <img src="https://images.unsplash.com/photo-1544837775-80252b827e8d?auto=format&fit=crop&q=80&w=500" alt="Main Content Image" class="hero-image">
         </div>
     </div>
 
